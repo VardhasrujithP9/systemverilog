@@ -1,0 +1,33 @@
+//=====================================================//
+//if we want remove the range wht ever we dont need 
+//we use ! operator can be used to excluse the set of values 
+//SYNTAX :  constraint { !(a inside {6,[12:24}); }
+//==================================================================//
+
+class packet;
+  
+  rand int a;
+  rand int b;
+ 
+  constraint c1{a inside{ [0:100],141,145,256,[200:300]};}
+  constraint c2{!(a inside {6,[200:300]});}
+  constraint c3{b>=100;b<=200;}
+  
+endclass
+  
+//----------------testcase----------------------//
+
+  module test;
+    packet p1,p2;
+    initial
+     begin
+       p1=new();
+       repeat(5)
+         begin
+           p1.randomize();
+           $display("a=%0d,b=%0d",p1.a,p1.b);
+         end
+     end
+  endmodule
+
+       
