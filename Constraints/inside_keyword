@@ -1,0 +1,32 @@
+//=====================================================//
+//-----------------inside keyword -------------------------//
+//=====================================================//
+//it is a set memeber ship method
+//what ever we want the range will use our own range values 
+//SYNTAX:  constraint c1{a inside{ SEPERTAED BY COMMAS};} 
+//constraint c1{a inside{ [0:100],141,145,256,[200:300]};}
+
+//==================================================================//
+
+class packet;
+  rand int a;
+  rand int b;
+ 
+  constraint c1{a inside{ [0:100],141,145,256,[200:300]};}
+  constraint c2{b inside {5,10};}
+  
+//----------------testcase----------------------//
+  module test;
+    packet p1,p2;
+    initial
+     begin
+       p1=new();
+       repeat(25)
+         begin
+           p1.randomize();
+           $display("a=%d,b=%d",p1.a,p1.b);
+         end
+     end
+  endmodule
+       
+       

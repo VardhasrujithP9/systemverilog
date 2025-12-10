@@ -1,0 +1,44 @@
+//=====================================================//
+//----------inline constraints-------------------------//
+//=====================================================//
+//Inline constraints are written directly inside the randomize() function using { }.
+//✅ 2. Overrides class constraints
+//Inline constraints have higher priority than class-level constraints.
+//They do not modify or store inside the class object
+//No need to modify class
+//Useful when you want custom random values without changing class code
+
+//⭐ Short Summary
+
+//Written inside randomize() with { }
+//Highest priority
+//Temporary for one-time use
+//Useful for test-specific constraints
+//Cannot create new rand class properties
+//Supports conditional, range, and set constraints
+
+//SYNTAX:p1.randomize with {};
+
+//============================================================//
+class packet;
+  rand int  a;
+  rand int b;
+ 
+  constraint c1{a>=90;a<=150;b>=100;b<=500;}
+  constraint c2{a<120;}
+endclass
+//----------------testcase----------------------//
+  module test;
+    packet p1,p2;
+    initial
+     begin
+       p1=new();
+       repeat(25)
+         begin
+           p1.randomize() with {a>114;b==342;};
+           $display("a=%d,b=%d",p1.a,p1.b);
+         end
+     end
+  endmodule
+       
+       

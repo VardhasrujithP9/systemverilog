@@ -1,0 +1,35 @@
+//=====================================================//
+//----------soft keeyword-------------------------//
+//=====================================================//
+//soft constraint allow inline constraint to override existing constraint;
+
+//if we cannot wirte soft it will take the commomn range
+//=========================================//
+//constraint c1{ a>=90;a<=150;b>=100;b<=500;}
+//constraint c2{ a<120;}
+// if we cannot write soft the value will be conflicted it can give error
+//p1.randomize() with { a<85;b==342;};this will not work gives the errror...
+
+
+class packet;
+  rand bit[3:0]a;
+  rand int b;
+ 
+  constraint c1{soft a>=90;a<=150;b>=100;b<=500;}
+  constraint c2{ soft a<120;}
+endclass
+//----------------testcase----------------------//
+  module test;
+    packet p1,p2;
+    initial
+     begin
+       p1=new();
+       repeat(25)
+         begin
+           p1.randomize() with { a<85;b==342;};
+           $display("a=%d,b=%d",p1.a,p1.b);
+         end
+     end
+  endmodule
+       
+       
