@@ -1,0 +1,21 @@
+//for each loop in the cosntraints//
+class packet;
+  rand int a[];
+  constraint size{a.size>=10;a.size<=15;}
+  constraint value{foreach (a[i]) a[i]==i+1;}
+endclass
+
+//------------testcase------------------------//
+module test;
+  packet p1;
+  initial
+    begin
+      p1=new();
+      repeat(10)
+       begin 
+         p1.randomize();
+         $display("%p",p1.a);
+              
+       end
+    end
+endmodule

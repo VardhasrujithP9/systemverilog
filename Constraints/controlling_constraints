@@ -1,0 +1,41 @@
+//controlling randomization two syntax:1.handle.constraint_mode();  controlling all coonstraints written in class  2.handlename.constraint name.constraint_mode(); particular constraint  
+
+class packet;
+  
+  rand int a;
+  rand int b;
+ 
+  constraint c1{a inside{ [0:100],141,145,256,[200:300]};}
+  constraint c2{b>=100;b<=200;}
+  
+endclass
+  
+//----------------testcase----------------------//
+
+  module test;
+    packet p1,p2;
+    initial
+     begin
+       p1=new();
+       repeat(3)
+         begin
+           p1.randomize();
+           $display("a=%0d,b=%0d",p1.a,p1.b);
+           
+           p1.constraint_mode(0);//disabling constraints of all 
+           $display("--disabling all constraints---");
+           $display("a=%0d,b=%0d",p1.a,p1.b);
+           p1.constraint_mode(1);
+           $display("--enabling all constraints---");
+           $display("a=%0d,b=%0d",p1.a,p1.b);
+           p1.c2.constraint_mode(0);
+           $display("--disabling praticular constraint c2--");
+           $display("a=%0d,b=%0d",p1.a,p1.b);
+           p1.c1.constraint_mode(0);
+           $display("--disabling praticular constraint c1--");
+           $display("a=%0d,b=%0d",p1.a,p1.b);
+          end
+     end
+  endmodule
+
+       
