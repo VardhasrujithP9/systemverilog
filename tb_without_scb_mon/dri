@@ -1,0 +1,30 @@
+class driver;
+    transaction tr;
+    mailbox gen2driv;
+    virtual intf vif;
+  
+  function new(mailbox gen2driv,virtual intf vif);
+    this.gen2driv = gen2driv;
+    this.vif      = vif ;
+  endfunction
+   
+  task main();
+    repeat(2)
+      begin 
+        tr=new();
+        gen2driv.get(tr);
+        vif.a <= tr.a;
+        vif.b <= tr.b;
+        #2;
+        tr.a = vif.a;
+        tr.b = vif.b;
+        tr.s = vif.s;
+        tr.c = vif.c;
+        
+        if({tr.c + tr.s } ==tr.a + tr.b)
+          $display("----pass-----");
+        else
+          $dispaly("-----fail------");
+      end
+  endtask
+endclass

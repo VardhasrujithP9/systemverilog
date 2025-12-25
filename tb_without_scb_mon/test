@@ -1,0 +1,10 @@
+`include "environment.sv"
+
+module test (intf i_intff);
+  environment env;
+ initial
+    begin
+      env = new(i_intff);
+      env.run();
+    end
+endmodule

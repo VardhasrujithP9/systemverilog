@@ -1,0 +1,14 @@
+
+`include "test"
+`include "interface.sv"
+
+module top;
+  intf i_intff();
+  test t1(i_intff);
+  HA DUT(.a(i_intff.a),.b(i_intff.b),.s(i_intff.s),.c(i_intff.c));
+  initial
+    begin
+      $dumpfile("dump.vcd");
+      $dumpvars;
+    end
+endmodule
