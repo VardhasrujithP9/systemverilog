@@ -1,15 +1,13 @@
 `include "environment.sv"
 
-program test(intf vif);
+module test(intf i_intff);
   environment e;
    
   initial
     begin
       
-      e=new(vif);
+      e=new(i_intff);
       e.run();
     end
   
-endprogram
-
-      
+endmodule

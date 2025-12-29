@@ -1,8 +1,8 @@
-`include "Transcation.sv"
-`include "Generator.sv"
-`include "Driver.sv"
-`include "Scoreboard.sv"
-`include "Monitor.sv"
+`include "transaction.sv"
+`include "generator.sv"
+`include "driver.sv"
+`include "scoreboard.sv"
+`include "monitor.sv"
 
 class environment;
   
@@ -18,7 +18,8 @@ class environment;
   
   function new ( virtual intf vif);
     this.vif = vif;
-    
+    gen2driv = new();
+    mon2scb  = new();
     gen=new(gen2driv);
     dri=new(gen2driv,vif);
     mon=new(mon2scb,vif);
@@ -29,14 +30,12 @@ class environment;
   task run();
     
     fork
-      gen.main;
-      dri.main;
-      mon.main;
-      scb.main;
+      gen.main();
+      dri.main();
+      mon.main();
+      scb.main();
     join
     
   endtask
   
 endclass
-
-    

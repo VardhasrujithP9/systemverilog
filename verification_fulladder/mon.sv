@@ -1,7 +1,7 @@
 class monitor;
  
    
-  mailbox  gen2driv;
+  mailbox mon2scb;;
   virtual intf vif;
   
   function new(mailbox mon2scb, virtual intf vif);
@@ -10,23 +10,19 @@ class monitor;
   endfunction
  
   task main();
-    repeat(5)
+    repeat(3)
       #1
       begin
         transaction tr;
         tr=new();
         tr.a = vif.a;
         tr.b = vif.b;
-        tr.c = vif.c;
+        tr.cin = vif.cin;
         tr.s = vif.s;
+        tr.c = vif.c;
         mon2scb.put(tr);
         tr.display("[MONITOR]");
       end
   endtask
   
 endclass
-
-        
-        
-       
-        
