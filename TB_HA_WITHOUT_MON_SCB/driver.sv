@@ -24,7 +24,8 @@ class driver;
         if({tr.c + tr.s } ==tr.a + tr.b)
           $display("----pass-----");
         else
-          $dispaly("-----fail------");
+          $display("-----fail------");
+        tr.display("[DRIVER]");
       end
   endtask
 endclass

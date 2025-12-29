@@ -1,5 +1,4 @@
-
-`include "test"
+`include "test.sv"
 `include "interface.sv"
 
 module top;
