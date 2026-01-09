@@ -3,7 +3,7 @@
 
 module test;
   int a,b,c;
-  function int add( ref int a,b);
+  function automatic int add( ref int a,b);
     a=100;
     b=200;
     return a+b;
