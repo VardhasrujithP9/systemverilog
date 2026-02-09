@@ -17,6 +17,7 @@ class environment;
   
   
   function new ( virtual intf vif);
+    
     this.vif = vif;
     gen2driv = new();
     mon2scb  = new();
